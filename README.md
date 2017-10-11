@@ -7,7 +7,7 @@ I'm interested in learning about data analytics for election campaigns and will 
 
 ## Project Ideas :bulb:
 
-1. [Web scraping](web_scraping_sots_election_app.nb.html) or getting the raw data from the election center app - http://ctemspublic.pcctg.net/#/home
+1. [Web scraping](web_scraping_sots_election_app.html) or getting the raw data from the election center app - http://ctemspublic.pcctg.net/#/home
      1. [2016 Presidential Election Results](https://raw.githubusercontent.com/jakekara/ct-election-2016-certified-data/master/output/merged_state_votes_pretty.csv) - courtesy of jkara@trendct.org
 
 2. Third party analysis
