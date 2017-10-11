@@ -1,0 +1,85 @@
+---
+title: "Web Scraping from Connecticut Secretary of State, Election Center App"
+author: "Jasmine Dumas (jasmine.dumas@gmail.com)"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Project Goals: 
+
+Obtain Election Results from http://ctemspublic.pcctg.net/#/home. A web scraper is a programiatic way of isolating data that is stored in a web page. This particular set of data is not made available within the HTML, and located offline as an Angular App through the Secretary of State office in Connecticut. 
+
+The 2016 Presidential election results in Connecticut have already been parsed by Jake Kara or TrendCT.org!
+
+```{r message=FALSE, warning=FALSE}
+# load libraries
+library(rvest)
+library(emo)
+library(readr)
+library(dplyr)
+library(forcats)
+library(ggplot2)
+library(wesanderson)
+```
+
+Below are some practice lines using the `rvest` `emo::ji('package')` in my attempt to web scrape the url. I may have to re-visit this to get new data that is published on the SOTS site for municipal elections.
+
+```{r}
+url <- "http://ctemspublic.pcctg.net/#/home"
+
+html_content <- read_html(url)
+html_content
+
+# trying this
+#html_content %>% 
+#  html_nodes("div") %>% 
+#  html_text() 
+
+# and this
+#html_content %>% 
+#  html_table(".colum2", fill=T) 
+```
+
+#### Parsed data:
+
+```{r}
+potus_election <- read_csv("https://raw.githubusercontent.com/jakekara/ct-election-2016-certified-data/master/output/merged_state_votes_pretty.csv")
+
+head(potus_election) %>% knitr::kable()
+```
+
+### Exploratory Data Analysis
+
+```{r}
+# how many differnt parties represented = 10
+potus_election %>% group_by(party_name) %>% 
+  summarise(count = n()) %>% 
+  ggplot(., aes(x = fct_reorder(party_name, count), y = count)) +
+    geom_col(fill = wes_palette("Moonrise1", 1)) +
+    coord_flip() +
+    labs(title = "Candidate Political Party Count", 
+         x = "", y = "Count") +
+    theme_minimal()
+```
+
+
+```{r}
+# what is the party distribution?
+potus_election %>% group_by(party_name) %>% 
+  dplyr::filter(party_name %in% c("Democratic Party", "Republican Party")) %>% 
+  summarise(count = sum(vote_count)) %>% 
+  ggplot(., aes(x = party_name, y = count, fill = count)) +
+    geom_col(fill = wes_palette("Moonrise2", 1)) +
+    labs(title = "Count of Votes Recieved by Party", subtitle = "Aggregated by all races",
+         x = "", y = "Count") +
+    theme_minimal()
+    
+```
+
+
+
+----
+
+fin.
