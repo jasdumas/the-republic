@@ -16,7 +16,9 @@ I'm interested in learning about data analytics for election campaigns and will 
 
 4. Age cohort progression model
 
-5. ... (got any cool ideas for me? :arrow_right: [email me](mailto:jasmine.dumas@gmail.com))
+5. Social media sentiment for 2018 Governor candidates
+
+6. ... (got any cool ideas for me? :arrow_right: [email me](mailto:jasmine.dumas@gmail.com))
 
 
 ## Bookshelf :books:
