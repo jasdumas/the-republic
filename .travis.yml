@@ -1,2 +1,15 @@
 language: R 
 cache: packages
+sudo: false
+branches:
+  only:
+  - master
+repos:
+  CRAN: https://cloud.r-project.org
+  ropensci: http://packages.ropensci.org  
+before_script:
+- chmod +x ./_render.sh
+- chmod +x ./_push.sh
+script: ./_render.sh && ./_push.sh
+env:
+  global:
