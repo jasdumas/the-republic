@@ -8,4 +8,4 @@ License: MIT + file
 Encoding: UTF-8
 LazyData: true
 X-CRAN-Comment: 
-Imports: tidyverse, rmarkdown, rvest, emo, readr, dplyr, forcats, ggplot2, wesanderson, stringr
+Imports: rmarkdown, rvest, emo, readr, dplyr, forcats, ggplot2, wesanderson, stringr
