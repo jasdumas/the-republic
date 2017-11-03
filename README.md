@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/jasdumas/the-republic.svg?branch=master)](https://travis-ci.org/jasdumas/the-republic)
-
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic)]()
+[![Build Status](https://travis-ci.org/jasdumas/the-republic.svg?branch=master)](https://travis-ci.org/jasdumas/the-republic)  [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic)]()
 
 # The Republic
 <img src="https://media.giphy.com/media/l0HlATpsNOlkDq6LC/giphy.gif" alt="olivia-pope" align="right">
