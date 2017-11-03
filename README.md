@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jasdumas/the-republic.svg?branch=master)](https://travis-ci.org/jasdumas/the-republic)
+
 # The Republic
 <img src="https://media.giphy.com/media/l0HlATpsNOlkDq6LC/giphy.gif" alt="olivia-pope" align="right">
 
