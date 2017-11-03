@@ -1,0 +1,11 @@
+Package: the-republic
+Title: The Republic
+Version: 0.0.0.9000
+Authors@R: person("Jasmine", "Dumas", email = "jasmine.dumas@gmail.com", role = c("aut", "cre"))
+Description: Local Connecticut Election and Voter Data Analytics Projects
+Depends: R (>= 3.4.0)
+License: MIT + file
+Encoding: UTF-8
+LazyData: true
+X-CRAN-Comment: Imports: tidyverse, rmarkdown, rvest, emo, readr, dplyr, forcats, ggplot2, wesanderson, stringr
+Imports: rmarkdown
