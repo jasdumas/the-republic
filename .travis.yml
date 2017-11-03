@@ -7,6 +7,11 @@ branches:
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
+r_github_packages:
+- karthik/wesanderson
+- hadley/scales
+- hadley/ggplot2
+- hadley/emo
 before_script:
 - chmod +x ./_render.sh
 - chmod +x ./_push.sh
