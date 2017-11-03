@@ -2,7 +2,7 @@
 title: "Election Results from the Connecticut Secretary of State, Election Center App"
 subtitle: "Exploratory Data Analysis & Web Scraping"
 author: "Jasmine Dumas (jasmine.dumas@gmail.com)"
-date: "`r Sys.Date()`"
+date: "`r Sys.time()`"
 output:
   html_document:
     df_print: paged
@@ -33,7 +33,7 @@ library(stringr)
 
 ### Web Scraping Attempts
 
-Below are some practice lines using the `rvest` `emo::ji('package')` in my attempt to web scrape the url. I may have to re-visit this to get new data that is published on the SOTS site for municipal elections.
+Below are some practice lines using the `rvest` `r emo::ji('package')` in my attempt to web scrape data with the url. I may have to re-visit this to get new data that is published on the SOTS site for municipal elections.
 
 ```{r}
 url <- "http://ctemspublic.pcctg.net/#/home"
