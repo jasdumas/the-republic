@@ -16,5 +16,5 @@ git add --all
 git commit -am "Travis $TRAVIS_EVENT_TYPE [skip ci]: build $TRAVIS_BUILD_NUMBER"
 
 # git push
-git remote add upstream "https://${GH_TOKEN}@github.com/${GH_OWNER}/${GH_REPO}.git"
+git remote add upstream https://${GH_TOKEN}@github.com/${GH_OWNER}/${GH_REPO}.git
 git push -q upstream ${GH_BRANCH}
