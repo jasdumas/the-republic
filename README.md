@@ -32,6 +32,7 @@ _I'm interested in learning about data analytics for election campaigns and will
 - ![A Bayesian Prediction Model for the U.S. Presidential Election](http://electionanalytics.cs.illinois.edu/site/file/Rigdon2009.pdf)
 - [How The Obama Campaign Used Predictive Analytics To Influence Voters](https://go.forrester.com/blogs/13-06-27-how_the_obama_campaign_used_predictive_analytics_to_influence_voters/)
 - [How Obama’s Team Used Big Data to Rally Voters: How President Obama’s campaign used big data to rally individual voters.](https://www.technologyreview.com/s/509026/how-obamas-team-used-big-data-to-rally-voters/)
+- [Here's How To Get Started In Election Data Analytics](https://www.forbes.com/sites/metabrown/2016/11/29/free-voter-data-helps-campaigns-gain-data-edge/#51b496f724eb)
 
 ## Events 🎫
 
