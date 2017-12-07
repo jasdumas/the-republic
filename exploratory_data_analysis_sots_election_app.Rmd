@@ -1,13 +1,13 @@
 ---
 title: "Election Results from the Connecticut Secretary of State, Election Center App"
-subtitle: "Exploratory Data Analysis & Web Scraping"
+subtitle: "Exploratory Data Analysis"
 author: "Jasmine Dumas (jasmine.dumas@gmail.com)"
 date: "`r Sys.time()`"
 output:
   html_document:
     df_print: paged
     toc: true
-    toc_depth: 4
+    toc_depth: 3
     toc_float: true
     theme: paper
     code_folding: hide
@@ -15,9 +15,9 @@ output:
 
 ## Project Goals
 
-Obtain Election Results from http://ctemspublic.pcctg.net/#/home. A web scraper is a programiatic way of isolating data that is stored in a web page. This particular set of data is not made available within the HTML, and located offline as an Angular App through the Secretary of State office in Connecticut. 
+- Obtain & analyze election results from [Connecticut Secretary of State, Election Center App](http://ctemspublic.pcctg.net/#/home). 
+- The 2016 Presidential election results in Connecticut have already been parsed by Jake Kara (jakekara) of TrendCT.org!
 
-The 2016 Presidential election results in Connecticut have already been parsed by Jake Kara or TrendCT.org!
 
 ```{r message=FALSE, warning=FALSE}
 # load libraries
@@ -29,13 +29,17 @@ library(forcats)
 library(ggplot2)
 library(wesanderson)
 library(stringr)
+library(dumas) # my personal pacakge on GitHub
 ```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 ### Web Scraping Attempts
 
-Below are some practice lines using the `rvest` `r emo::ji('package')` in my attempt to web scrape data with the url. I may have to re-visit this to get new data that is published on the SOTS site for municipal elections.
+#Below are some practice lines using the `rvest` `r emo::ji('package')` in my attempt to web scrape data with the url. I may have to re-visit this to get new data that is published on the SOTS site for municipal elections.
 
-```{r}
+# A web scraper is a programiatic way of isolating data that is stored in a web page. This particular set of data is not made available within the HTML, and located offline as an Angular App through the Secretary of State office in Connecticut. 
+
 url <- "http://ctemspublic.pcctg.net/#/home"
 
 html_content <- read_html(url)
@@ -51,7 +55,7 @@ html_content
 #  html_table(".colum2", fill=T) 
 ```
 
-#### Parsed data:
+### Parsed Data Overview:
 
 ```{r message=FALSE, warning=FALSE, paged.print=T}
 potus_election <- read_csv("https://raw.githubusercontent.com/jakekara/ct-election-2016-certified-data/master/output/merged_state_votes_pretty.csv")
@@ -59,19 +63,27 @@ potus_election <- read_csv("https://raw.githubusercontent.com/jakekara/ct-electi
 head(potus_election) 
 ```
 
-----
 
-### Exploratory Data Analysis
+## Exploratory Data Analysis
+
 
 ```{r}
+# define percentage function
+percentage <- function(n) {
+  return(as.numeric(sprintf("%.2f", n /sum(n) * 100)))
+}
+
 # how many differnt parties represented = 10
 potus_election %>% group_by(party_name) %>% 
+  dplyr::filter(!is.na(party_name)) %>% 
   summarise(count = n()) %>% 
-  ggplot(., aes(x = fct_reorder(party_name, count), y = count)) +
+  mutate(percentage = percentage(count)) %>% 
+  ggplot(., aes(x = fct_reorder(party_name, percentage), y = percentage)) +
     geom_col(fill = wes_palette("Moonrise1", 1)) +
     coord_flip() +
-    labs(title = "Candidate Political Party Count", 
-         x = "", y = "Count") +
+    labs(title = "Candidate Political Party Affiliation", 
+         subtitle = "Most candidates run as Republican, Democrat or Independent",
+         x = "", y = "Percentage (%)") +
     theme_minimal()
 ```
 
@@ -82,7 +94,7 @@ potus_election %>% group_by(party_name) %>%
   summarise(count = sum(vote_count)) %>% 
   ggplot(., aes(x = party_name, y = count, fill = count)) +
     geom_col(fill = wes_palette("Moonrise2", 1)) +
-    labs(title = "Count of Votes Recieved by Party", subtitle = "Aggregated by all races",
+    labs(title = "Count of Votes Recieved by Party", subtitle = "Democratic candidates recieved more total votes aggregated by all races",
          x = "", y = "Count") +
     theme_minimal()
     
@@ -94,24 +106,32 @@ potus_election %>% group_by(party_name) %>%
 potus_election$race <- str_replace_all(potus_election$office, "[0-9]", "")
 ```
 
-- The less "prestigeous" office, the fewer amount of voters participate in. This could be due to the voting ballot listing the candidates in office order from left to right, potentailly fatiguing voters to vote for less known candidates in races they are unclear about.
 
-![](http://we-ha.com/wp-content/uploads/2014/10/westhartfordballot-dist-19.png)
 ```{r}
 # vote participation by office type?
 potus_election %>% group_by(race) %>% 
   summarise(count = sum(vote_count)) %>% 
   arrange(desc(count)) %>% 
-  mutate(rank = 1:nrow(.)) %>% 
+  mutate(rank = 1:nrow(.), 
+         percentage = percentage(count)) %>% 
   dplyr::filter(rank < 6) %>% 
-  ggplot(., aes(x = fct_reorder(race, count), y = count)) +
+  ggplot(., aes(x = fct_reorder(race, percentage), y = percentage)) +
     geom_col(fill = wes_palette("Moonrise3", 1)) +
     coord_flip() +
-    labs(title = "Count of Votes Recieved by Office", subtitle = "Aggregated by all candidates",
-         x = "", y = "Count") +
+    labs(title = "% of Votes Recieved by Office", subtitle = "Aggregated by all candidates",
+         x = "", y = "Percentage (%)") +
     theme_minimal()
 ```
 
+
+
+### Summary
+
+- More Republican affiliated candidates ran for office in 2016 in Connecticut than any other race, however Democrats received more share of the votes aggregated across all races.
+
+- The less "prestigious" office, the fewer amount of voters participate in. This could be due to the voting ballot listing the candidates in office order from left to right, potentially fatiguing voters to vote for less known candidates in races they are unclear about.
+
+![Example West Hartford Ballot](http://we-ha.com/wp-content/uploads/2014/10/westhartfordballot-dist-19.png)
 
 ----
 
