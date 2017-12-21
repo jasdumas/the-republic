@@ -1,0 +1,82 @@
+---
+title: "CT Registration and Enrollment Statistics as of November 1, 2017"
+subtitle: "PDF parsing"
+author: "Jasmine Dumas"
+date: "12/20/2017"
+output: html_notebook
+---
+
+## Project Goals
+
+- Extract data from PDF's located on The Office of
+Secretary of the State, [Statistics & Data Portal](http://portal.ct.gov/SOTS/Election-Services/Statistics-and-Data/Statistics-and-Data)
+- Create a semi-generic table extractor
+
+```{r}
+library(pdftools)
+library(stringr)
+```
+
+
+
+```{r}
+# download the file
+download.file("http://portal.ct.gov/-/media/Departments-and-Agencies/SOTS/sots/ElectionServices/Registration_and_Enrollment_Stats/Nov17RPES.pdf?la=en", "Nov17RPES.pdf", mode = "wb")
+
+txt <- pdf_text("Nov17RPES.pdf")
+
+# first page text
+cat(txt[1])
+```
+
+```{r}
+# split each line of the first page
+txt1 <- strsplit(txt[1], "\n")
+
+# 1-3 index are meta data
+head(txt1[[1]][4])
+```
+
+```{r}
+# define column names
+columns <- c(strsplit(txt1[[1]][5], " "))
+columns2 <- c(columns[[1]][1], columns[[1]][10], 
+             paste(columns[[1]][18], columns[[1]][19]),
+             paste("Republican", columns[[1]][20]), 
+             paste("Republican", columns[[1]][21]), 
+             paste("Republican", columns[[1]][22]),
+             
+             paste("Democratic", columns[[1]][25]), 
+             paste("Democratic", columns[[1]][26]), 
+             paste("Democratic", columns[[1]][27]),
+             
+             paste("Minor", columns[[1]][29]), 
+             paste("Minor", columns[[1]][30]), 
+             paste("Minor", columns[[1]][31]),
+             
+             paste("Minor", columns[[1]][32], columns[[1]][33]), 
+             
+             paste("Unaffiliated", columns[[1]][53]), 
+             paste("Unaffiliated", columns[[1]][55]), 
+             paste("Unaffiliated", columns[[1]][56]),
+             
+             paste("Totals", columns[[1]][60]), 
+             paste("Totals", columns[[1]][61]), 
+             paste("Totals", columns[[1]][62])
+             )
+columns2
+```
+
+
+```{r}
+str_extract_all(txt1[[1]][6], "\\w+")
+```
+
+
+----
+
+fin.
+
+## Resources
+
+- https://ropensci.org/blog/2016/03/01/pdftools-and-jeroen/

@@ -1,0 +1,84 @@
+---
+title: "CT Election Results Data Availability"
+author: "Jasmine Dumas"
+date: "11/19/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r}
+library(rvest)
+library(tidyverse)
+library(RSelenium)
+```
+
+
+```{r}
+url <- read_html("http://ctemspublic.pcctg.net/")
+
+url %>%
+ html_nodes(".official+ div") %>%
+ html_text()
+
+```
+
+```{r}
+url %>%
+ html_nodes(".electionlabel") %>%
+ html_text()
+```
+
+
+```{r}
+url %>%
+ html_nodes(".listofNomiees a") %>%
+ html_text()
+```
+
+```{r}
+url %>%
+ html_nodes("strong , #current , #current_sub") %>%
+ html_text()
+```
+
+
+```{r}
+url %>%
+ html_nodes(".bgblue") %>%
+ html_text()
+```
+
+
+
+
+```{r}
+# Submit the form on indeed.com for a job description and location using html_form() and set_values()
+election_choice = "09/12/2017 -- Democratic Municipal Primary"
+
+session <- html_session("http://ctemspublic.pcctg.net/#/home")
+form <- html_form(session)[[1]]
+form <- set_values(form, q = election_choice)
+```
+
+
+```{r}
+# Submit the form on indeed.com for a job description and location using html_form() and set_values()
+query = "data science"
+loc = "New York"
+session <- html_session("http://www.indeed.com")
+
+
+form <- html_form(session)[[1]]
+form <- set_values(form, q = query, l = loc)
+```
+
+
+
+
