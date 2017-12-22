@@ -24,7 +24,7 @@ library(RSelenium)
 url <- read_html("http://ctemspublic.pcctg.net/")
 
 url %>%
- html_nodes(".official+ div") %>%
+ html_nodes(".ng-binding") %>%
  html_text()
 
 ```
@@ -53,30 +53,6 @@ url %>%
 url %>%
  html_nodes(".bgblue") %>%
  html_text()
-```
-
-
-
-
-```{r}
-# Submit the form on indeed.com for a job description and location using html_form() and set_values()
-election_choice = "09/12/2017 -- Democratic Municipal Primary"
-
-session <- html_session("http://ctemspublic.pcctg.net/#/home")
-form <- html_form(session)[[1]]
-form <- set_values(form, q = election_choice)
-```
-
-
-```{r}
-# Submit the form on indeed.com for a job description and location using html_form() and set_values()
-query = "data science"
-loc = "New York"
-session <- html_session("http://www.indeed.com")
-
-
-form <- html_form(session)[[1]]
-form <- set_values(form, q = query, l = loc)
 ```
 
 

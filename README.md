@@ -3,7 +3,7 @@
 
 Local Connecticut Election &amp; Voter Data Analytics Projects. The name of the code repository is taken from [_The Republic_](https://en.wikipedia.org/wiki/Republic_(Plato)) and of course [Scandal](http://abc.go.com/shows/scandal).
 
-_I'm interested in learning about data analytics for election campaigns and will be storing papers, links, and projects as I learn about new statistics, modeling and Bayesian approaches._ 
+> I'm interested in learning about data analytics for election campaigns and will be storing papers, links, and projects as I learn about new statistics, modeling and Bayesian approaches. 
 
 ## Project Ideas 💡
 
