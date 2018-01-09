@@ -31,12 +31,12 @@ The current focus will be on local Connecticut Election &amp; Voter Data Analyti
 - 2017 Municipal Election
      1. Ballot info: http://portal.ct.gov/SOTS/Election-Services/Town-Ballots/2017-Town-Ballots
 
-- got any cool ideas for me? :arrow_right: [Submit an issue](https://github.com/jasdumas/the-republic/issues/new)
+- got any cool ideas for me? ➡️ [Submit an issue](https://github.com/jasdumas/the-republic/issues/new)
 
 
 ## Bookshelf 📚
 
-- ![A Bayesian Prediction Model for the U.S. Presidential Election](http://electionanalytics.cs.illinois.edu/site/file/Rigdon2009.pdf)
+- [A Bayesian Prediction Model for the U.S. Presidential Election](http://electionanalytics.cs.illinois.edu/site/file/Rigdon2009.pdf)
 - [How The Obama Campaign Used Predictive Analytics To Influence Voters](https://go.forrester.com/blogs/13-06-27-how_the_obama_campaign_used_predictive_analytics_to_influence_voters/)
 - [How Obama’s Team Used Big Data to Rally Voters: How President Obama’s campaign used big data to rally individual voters.](https://www.technologyreview.com/s/509026/how-obamas-team-used-big-data-to-rally-voters/)
 - [Here's How To Get Started In Election Data Analytics](https://www.forbes.com/sites/metabrown/2016/11/29/free-voter-data-helps-campaigns-gain-data-edge/#51b496f724eb)
