@@ -1,9 +1,11 @@
 ---
-title: "CT Registration and Enrollment Statistics as of November 1, 2017"
-subtitle: "PDF parsing"
+title: "CT Voter Registration and Enrollment Statistics as of November 1, 2017"
 author: "Jasmine Dumas"
-date: "12/20/2017"
-output: html_notebook
+date: "1/9/2018"
+output:
+  html_document:
+    df_print: paged
+subtitle: PDF parsing
 ---
 
 ## Project Goals
@@ -12,16 +14,18 @@ output: html_notebook
 Secretary of the State, [Statistics & Data Portal](http://portal.ct.gov/SOTS/Election-Services/Statistics-and-Data/Statistics-and-Data)
 - Create a semi-generic table extractor
 
-```{r}
+```{r message=FALSE, warning=FALSE}
+# load libraries
 library(pdftools)
 library(stringr)
+library(datapasta)
+library(purrr)
 ```
 
-
-
+First approach to parsing PDF's from the `pdftools` package:
 ```{r}
 # download the file
-download.file("http://portal.ct.gov/-/media/Departments-and-Agencies/SOTS/sots/ElectionServices/Registration_and_Enrollment_Stats/Nov17RPES.pdf?la=en", "Nov17RPES.pdf", mode = "wb")
+download.file("http://portal.ct.gov/-/media/sots/ElectionServices/Registration_and_Enrollment_Stats/Nov17RPES.pdf?la=en", "Nov17RPES.pdf", mode = "wb")
 
 txt <- pdf_text("Nov17RPES.pdf")
 
@@ -69,14 +73,82 @@ columns2
 
 
 ```{r}
-str_extract_all(txt1[[1]][6], "\\w+")
+# can't use the above indicies since the notes columns makes the vector for each town variable
+str_extract_all(txt1[[1]][7], "\\w+")
 ```
 
+New approach using the `datapasta` package for the first page:
+```{r}
+# a little copy/paste from the original pdf
+## RStudio addin for 'paste as a vector (vertical)'
+
+cp_data <- c("Town County C D Active Inactive Total Active Inactive Total Active Inactive Total M Notes Active Inactive Total Active Inactive Totals",
+  "Andover Tolland 2 596 3 599 740 2 742 47 0 47 G IT L 887 5 892 2,270 10 2,280",
+  "Ansonia New Haven 3 1596 135 1,731 3167 405 3,572 130 7 137 G IT L 4060 626 4,686 8,953 1,173 10,126",
+  "Ashford Windham 2 579 59 638 961 104 1,065 37 4 41 G IT L 1084 276 1,360 2,661 443 3,104",
+  "Avon Hartford 5 4007 274 4,281 3674 299 3,973 126 9 135 G IT L WF 4862 613 5,475 12,669 1,195 13,864",
+  "Barkhamsted Litchfield 1 867 16 883 714 27 741 35 1 36 G IT L 1200 43 1,243 2,816 87 2,903",
+  "Beacon Falls New Haven 3 1091 33 1,124 1114 36 1,150 63 2 65 G IT L WF 2090 64 2,154 4,358 135 4,493",
+  "Berlin Hartford 1 3518 133 3,651 4780 218 4,998 75 5 80 G IT L WF 5441 338 5,779 13,814 694 14,508",
+  "Bethany New Haven 3 1152 44 1,196 1165 46 1,211 54 2 56 G IT L 1863 83 1,946 4,234 175 4,409",
+  "Bethel Fairfield 5 3335 80 3,415 3355 147 3,502 199 3 202 G IT L PRO WF 5345 237 5,582 12,234 467 12,701",
+  "Bethlehem Litchfield 5 898 37 935 677 55 732 52 1 53 G IT L WF 1128 154 1,282 2,755 247 3,002",
+  "Bloomfield Hartford 1 1416 90 1,506 8600 308 8,908 140 3 143 G IT L WF 4094 244 4,338 14,250 645 14,895",
+  "Bolton Tolland 2 976 68 1,044 1006 89 1,095 49 5 54 G IT L 1339 160 1,499 3,370 322 3,692",
+  "Bozrah New London 2 359 13 372 600 21 621 39 2 41 G IT L 795 31 826 1,793 67 1,860",
+  "Branford New Haven 3 3644 124 3,768 6784 236 7,020 181 4 185 G IT L WF 9514 322 9,836 20,123 686 20,809",
+  "Bridgeport Fairfield 4 4128 820 4,948 45573 7345 52,918 504 27 531 G IT L WF 19030 4446 23,476 69,235 12,638 81,873",
+  "Bridgewater Litchfield 5 421 0 421 412 540 952 25 0 25 G IT L 466 0 466 1,324 540 1,864",
+  "Bristol Hartford 1 6911 206 7,117 12739 96 12,835 605 22 627 G IT L WF 14025 779 14,804 34,280 1,103 35,383",
+  "Brookfield Fairfield 5 3796 136 3,932 2678 21 2,699 240 10 250 ABP G IT L UIT 4918 208 5,126 11,632 375 12,007",
+  "Brooklyn Windham 2 1262 27 1,289 1436 66 1,502 95 2 97 G IT L WF 2670 58 2,728 5,463 153 5,616",
+  "Burlington Hartford 5 1874 41 1,915 1668 21 1,689 79 5 84 G IT L 2717 158 2,875 6,338 225 6,563",
+  "Canaan Litchfield 5 165 16 181 269 0 269 4 0 4 G IT 267 45 312 705 61 766",
+  "Canterbury Windham 2 1077 18 1,095 786 13 799 68 1 69 CF G IT L WF 1599 69 1,668 3,530 101 3,631",
+  "Canton Hartford 5 2260 88 2,348 2321 96 2,417 87 7 94 G IT L 2865 151 3,016 7,533 342 7,875",
+  "Chaplin Windham 2 478 4 482 418 11 429 16 0 16 IT L WF 581 21 602 1,493 36 1,529")
+```
+
+```{r}
+# fix two word counties for parsing
+nh <- str_extract(cp_data, "New Haven")
+nl <- str_extract(cp_data, "New London")
+cp_data[!is.na(nh)]
+
+cp_data <- str_replace(cp_data, "New Haven", "NewHaven")
+cp_data <- str_replace(cp_data, "New London", "NewLondon")
+```
+
+
+
+```{r}
+# extract between spaces
+# now each row is a nest list
+# the 1 vector is the headers
+
+cp_data <- str_extract_all(cp_data[2:24], boundary("word"))
+cp_data
+```
+
+To-do:
+```{r}
+# Need to remove extraneous letters after the town, county of the first two objects so that the nest vectors are all the same
+#cp_data %>% map_df(`[[`,)
+```
+
+```{r}
+#map(unlist, cp_data[2:23])
+```
+
+
+## Resources
+
+- https://ropensci.org/blog/2016/03/01/pdftools-and-jeroen/
 
 ----
 
 fin.
 
-## Resources
 
-- https://ropensci.org/blog/2016/03/01/pdftools-and-jeroen/
+
+[🔙 to the main page](https://jasdumas.github.io/the-republic/)

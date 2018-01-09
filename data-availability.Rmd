@@ -1,5 +1,6 @@
 ---
 title: "CT Election Results Data Availability"
+subtitle: "Web Scraping"
 author: "Jasmine Dumas"
 date: "11/19/2017"
 output: html_document
@@ -57,4 +58,9 @@ url %>%
 
 
 
+----
 
+fin.
+
+
+[🔙 to the main page](https://jasdumas.github.io/the-republic/)

@@ -9,9 +9,9 @@ Local Connecticut Election &amp; Voter Data Analytics Projects. The name of the 
 
 - ✅ [EDA of 2016 National and Regional Election results from the SOTS Election center app ](https://jasdumas.github.io/the-republic/exploratory_data_analysis_sots_election_app.html)
 
-- ⏳ [Web scraping the date of data availability from the SOTS Election center app](data-availability.Rmd)
+- ⏳ [Web scraping the date of data availability from the SOTS Election center app](https://jasdumas.github.io/the-republic/data-availability.html)
      
-- ⏳ Extracting voter registration data from PDF's from the [SOTS Statistics & Data Portal](http://portal.ct.gov/SOTS/Election-Services/Statistics-and-Data/Statistics-and-Data)
+- ⏳ [Extracting voter registration data from PDF's from the SOTS Statistics & Data Portal](https://jasdumas.github.io/the-republic/sots_pdf_parsing_voter_registration.html)
 
 - Third party analysis
      1. _Is there a growing interest in third party candidates?_
@@ -28,7 +28,7 @@ Local Connecticut Election &amp; Voter Data Analytics Projects. The name of the 
 - 2017 Municipal Election
      1. Ballot info: http://portal.ct.gov/SOTS/Election-Services/Town-Ballots/2017-Town-Ballots
 
-- (got any cool ideas for me? :arrow_right: [email me](mailto:jasmine.dumas@gmail.com))
+- got any cool ideas for me? :arrow_right: [Submit an issue](https://github.com/jasdumas/the-republic/issues/new)
 
 ## Bookshelf 📚
 
@@ -36,10 +36,11 @@ Local Connecticut Election &amp; Voter Data Analytics Projects. The name of the 
 - [How The Obama Campaign Used Predictive Analytics To Influence Voters](https://go.forrester.com/blogs/13-06-27-how_the_obama_campaign_used_predictive_analytics_to_influence_voters/)
 - [How Obama’s Team Used Big Data to Rally Voters: How President Obama’s campaign used big data to rally individual voters.](https://www.technologyreview.com/s/509026/how-obamas-team-used-big-data-to-rally-voters/)
 - [Here's How To Get Started In Election Data Analytics](https://www.forbes.com/sites/metabrown/2016/11/29/free-voter-data-helps-campaigns-gain-data-edge/#51b496f724eb)
+- [New Analysis Uses Reddit Data to Accurately Predict Popular Vote Margin of the 2016 Election](https://melting.glass/new-analysis-uses-reddit-data-to-accurately-predict-popular-vote-margin-in-the-2016-election-14-3a9cb2f4cb5c)
 
-## Events 🎫
+## Events & Initiatives 🎫
 
-- ["Volunteers offer their skills pro bono to progressive women running for office"](https://twitter.com/lkherman/status/928081355040280577)
+- [Get Her Elected: _Volunteers offer their skills pro bono to progressive women running for office_](https://www.getherelected.com/)
 
 ## Companies focused on civic action 🗳️
 
