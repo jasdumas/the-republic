@@ -1,13 +1,16 @@
 # The Republic 🇺🇸
 <img src="https://media.giphy.com/media/l0HlATpsNOlkDq6LC/giphy.gif" alt="olivia-pope" align="right">
 
-Local Connecticut Election &amp; Voter Data Analytics Projects. The name of the code repository is taken from [_The Republic_](https://en.wikipedia.org/wiki/Republic_(Plato)) and of course [Scandal](http://abc.go.com/shows/scandal).
+I'm interested in learning and implementing data analytics techniques for election campaigns after witnessing the role of data, and the misrepresentation of information in the 2016 U.S. Presidential election. I will be using this repo to store research papers, project ideas, and links to events that I can leverage to broaden my existing data science & predictive modeling skills. 
 
-> I'm interested in learning about data analytics for election campaigns and will be storing papers, links, and projects as I learn about new statistics, modeling and Bayesian approaches. 
+The current focus will be on local Connecticut Election &amp; Voter Data Analytics Projects but the techniques will be reproducible for most campaigns across the country. The name of this repo is taken from [_The Republic_](https://en.wikipedia.org/wiki/Republic_(Plato)) and of course [Scandal](http://abc.go.com/shows/scandal).
+
 
 ## Project Ideas 💡
 
-- ✅ [EDA of 2016 National and Regional Election results from the SOTS Election center app ](https://jasdumas.github.io/the-republic/exploratory_data_analysis_sots_election_app.html)
+#### Key: ✅ = COMPLETED; ⏳ = IN-PROGRESS
+
+- ✅ [Exploratory data analysis of 2016 National and Regional Election results from the SOTS Election center app](https://jasdumas.github.io/the-republic/exploratory_data_analysis_sots_election_app.html)
 
 - ⏳ [Web scraping the date of data availability from the SOTS Election center app](https://jasdumas.github.io/the-republic/data-availability.html)
      
@@ -29,6 +32,7 @@ Local Connecticut Election &amp; Voter Data Analytics Projects. The name of the 
      1. Ballot info: http://portal.ct.gov/SOTS/Election-Services/Town-Ballots/2017-Town-Ballots
 
 - got any cool ideas for me? :arrow_right: [Submit an issue](https://github.com/jasdumas/the-republic/issues/new)
+
 
 ## Bookshelf 📚
 
